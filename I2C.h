@@ -11,11 +11,11 @@ private:
 	i2c_data_t data;
 
 public:
-	I2C();
+	I2C(i2c_data_t);
 	~I2C();
 
-	bool write(i2c_data_t);
-	bool read(i2c_data_t*);
+	bool write();
+	bool read();
 };
 
 #endif
