@@ -8,14 +8,15 @@ typedef struct i2c_data_t {
 
 class I2C {
 private:
-	i2c_data_t data;
-
+	i2c_data_t receivedData;
 public:
-	I2C(i2c_data_t);
+	I2C(bool isMaster); // 0 - master, 1 - slave
 	~I2C();
 
-	bool write();
-	bool read();
+	bool write(i2c_data_t);
+	bool read(i2c_data_t*);
+	
+	void setReceivedData(i2c_data_t);
 };
 
 #endif
