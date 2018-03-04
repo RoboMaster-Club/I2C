@@ -1,22 +1,20 @@
 #ifndef I2C_H_
 #define I2C_H_
 
-typedef struct i2c_data_t {
-	float absolute_direction;
-	float angle;
-};
-
 class I2C {
 private:
 	i2c_data_t receivedData;
 public:
-	I2C(bool isMaster); // 0 - master, 1 - slave
+	I2C();
 	~I2C();
 
-	bool write(i2c_data_t);
-	bool read(i2c_data_t*);
+  const int VISIONBOARD_ADDRESS = 8;
+  const int CENSORBOARD_ADDRESS = 7;
+  const int ACCURACY = 100000;
+	bool write(float * floatptr); // floatptr[0] is absolute_direction, floatptr[1] is angle.
+	bool read(int numReq, float * floatptr);
 	
-	void setReceivedData(i2c_data_t);
+	// void setReceivedData(i2c_data_t);
 };
 
 #endif

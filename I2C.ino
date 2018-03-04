@@ -1,21 +1,22 @@
 #include "I2C.h"
 I2C* i2c;
+i2c_data_t * i2c_data;
+
 
 void setup() {
-	Wire.begin(8);                // join i2c bus with address #8
-	Wire.onReceive(readHandle); // register event
-	i2c = new I2C(false);
+  i2c_data->angle = 53;
+  i2c_data->absolute_direction = 89;
+	Wire.begin(IRC::);                // join i2c bus with address #8
+	Wire.onRequest(writeHandle); // register event
+	i2c = new I2C();
 }
 
 void loop() {
-
+  //Wire.requestFrom();
 }
 
-void readHandle(int count) {
-	while (1 < Wire.available()) { // loop through all but the last
-		char c = Wire.read(); // receive byte as a character
-		Serial.print(c);         // print the character
-	}
-	int x = Wire.read();    // receive byte as an integer
-	Serial.println(x);         // print the integer
+void writeHandle(int count) {
+  int numReq = 32;
+  float * floatptr = (float *) malloc (numReq * sizeof(float));
+  i2c->read(numReq, floatptr);
 }
