@@ -17,32 +17,29 @@ public:
 	bool read(T&);
 };
 
-template <class T>
-I2C<T>::I2C(int address) {
+template <class T> I2C<T>::I2C(int address) {
   Wire.begin(address);
   
 }
 
-template <class T>
-bool I2C<T>::write(const T& data)
+template <class T> bool I2C<T>::write(const T& data)
 {
   const unsigned char * p = (const unsigned char*)&data;
-  unsigned int i;
   size_t size = sizeof data;
-  for (i = 0; i < size; i++)
+  unsigned int i = 0;
+  for (; i < size; i++)
     Wire.write(*p++);
-  return i;
+  return i == size;
 }
 
-template <class T>
-bool I2C<T>::read(T& data)
+template <class T> bool I2C<T>::read(T& data)
 {
   unsigned char * p = (unsigned char*)&data;
-  unsigned int i;
   size_t size = sizeof data;
-  for (i = 0; i < size; i++)
+  unsigned int i = 0;
+  for (; i < size; i++)
     *p++ = Wire.read();
-  return i;
+  return i == size;
 }
 
 #endif	
