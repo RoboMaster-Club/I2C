@@ -13,14 +13,16 @@ void setup() {
 
 void loop() {
   if(newData) {
-    Serial.println(data.encoder_front_left);
-    Serial.println(data.encoder_rear_left);
-    Serial.println(data.encoder_front_right);
-    Serial.println(data.encoder_rear_right);
-    data.encoder_front_left = 200;
-    data.encoder_rear_left = 200;
-    data.encoder_front_right = -200;
-    data.encoder_rear_right = -200;
+    Serial.println(data.x);
+    Serial.println(data.y);
+    Serial.println(data.z);
+    Serial.println(data.angular_velocity_x);
+    Serial.println(data.angular_velocity_y);
+    Serial.println(data.velocity_z);
+    //data.encoder_front_left = 200;
+    //data.encoder_rear_left = 200;
+    //data.encoder_front_right = -200;
+    //data.encoder_rear_right = -200;
     newData = 0;
   }
 }
