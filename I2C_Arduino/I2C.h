@@ -3,10 +3,17 @@
 #define _I2C_H_
 
 typedef struct i2c_data_t {
-	long encoder_front_left;
-	long encoder_rear_left;
-	long encoder_front_right;
-	long encoder_rear_right;
+    int id;
+    float width;
+    float height;
+    float x;
+    float y;
+    float z; //distance
+    float angular_velocity_x;
+    float angular_velocity_y;
+    float velocity_x;
+    float velocity_y;
+    float velocity_z;
 } i2c_data_t;
 
 template <class T>
